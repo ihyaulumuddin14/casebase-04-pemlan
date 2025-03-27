@@ -26,8 +26,10 @@ public class Inventory<T> {
             }
         }
 
-        if (results.isEmpty()) throw new ItemTidakDItemukanException("Item dengan kata kunci + " + keyword + " tidak ditemukan.");
-
+        if (results.isEmpty()) {
+            throw new ItemTidakDItemukanException("Item dengan kata kunci " + keyword + " tidak ditemukan.");
+        } 
+        
         return results;
     }
 }

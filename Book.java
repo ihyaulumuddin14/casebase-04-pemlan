@@ -47,7 +47,7 @@ public class Book {
         System.out.println("Judul: " + this.title);
         System.out.println("Penulis: " + this.author);
         System.out.println("Tahun: " + this.year);
-        System.out.println("Stok: " + this.stock + "\n");
+        System.out.println("Stok: " + this.stock);
         System.out.println("----------------\n");
     }
 }

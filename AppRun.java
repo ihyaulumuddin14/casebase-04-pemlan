@@ -93,14 +93,12 @@ public class AppRun {
             in.nextLine();
     
             library.updateStock(bookToUpdate, newStock);
-            System.out.println("Stok buku berhasil diperbarui!");
         } else {
             System.out.println("Buku tidak ditemukan.");
         }
     }
 
     private static void printAllBooks() {
-        System.out.println("Daftar Semua Buku:");
         library.printAllBooks();
     }
 

@@ -30,11 +30,8 @@ public class Library {
         try {
             List<Integer> indeks = new ArrayList<>();
 
-            if (this.titles.getItems().contains(keyword)) {
-                indeks = this.titles.searchItems(keyword);
-            } else if (this.authors.getItems().contains(keyword)) {
-                indeks = this.authors.searchItems(keyword);
-            }
+            indeks = this.titles.searchItems(keyword);
+            if (indeks.isEmpty()) indeks = this.authors.searchItems(keyword);
 
             for (Integer index : indeks) {
                 this.books.getItems().get(index).printBook();
@@ -50,12 +47,18 @@ public class Library {
             int bookIndex = bookList.indexOf(book);
     
             bookList.get(bookIndex).setStock(quantity);
+            System.out.println("Stok buku berhasil diperbarui!");
         } catch (AngkaStokException e) {
             System.out.println("AngkaStokException: " + e.getMessage());
         }
     }
 
     public void printAllBooks() {
+        if (this.books.getItems().isEmpty()) {
+            System.out.println("Tidak ada buku yang tersedia.");
+            return;
+        }
+        System.out.println("Daftar Semua Buku:\n");
         for (Book book : this.books.getItems()) {
             book.printBook();
         }
