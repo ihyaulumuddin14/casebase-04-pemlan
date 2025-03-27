@@ -3,19 +3,23 @@ import java.util.List;
 
 public class Library {
     private Inventory<Book> books = new Inventory<>();
-    private Inventory<String> authors = new Inventory<>();
-    private Inventory<String> titles = new Inventory<>();
+    private Inventory<String> authors = new Inventory<>(); //Untuk mencari buku berdasarkan penulis
+    private Inventory<String> titles = new Inventory<>(); //Untuk mencari buku berdasarkan judul
 
+
+    //GETTER
     public Inventory<Book> getBooks() {
         return this.books;
     }
 
+    //Inventory authors dan titles ikut diperbarui ketika buku ditambah
     public void addBook(Book book) {
         this.books.addItem(book);
         this.authors.addItem(book.getAuthor());
         this.titles.addItem(book.getTitle());
     }
 
+    //Inventory authors dan titles ikut diperbarui ketika buku dihapus
     public void removeBook(Book book) {
         try {
             this.books.removeItem(book);
@@ -26,11 +30,14 @@ public class Library {
         }
     }
 
+    //Mengembalikan tampilan buku berdasarkan keyword
     public void searchBooks(String keyword) {
         try {
             List<Integer> indeks = new ArrayList<>();
 
-            indeks = this.titles.searchItems(keyword);
+            if (this.authors.getItems().contains(keyword)) indeks = this.authors.searchItems(keyword);
+            else if (this.titles.getItems().contains(keyword)) indeks = this.titles.searchItems(keyword);
+
             if (indeks.isEmpty()) indeks = this.authors.searchItems(keyword);
 
             for (Integer index : indeks) {
@@ -41,6 +48,7 @@ public class Library {
         }
     }
 
+    //Untuk memperbarui stok buku dengan validasi jumlah stok yang diinput
     public void updateStock(Book book, int quantity) {
         try {
             List<Book> bookList = this.books.getItems();
@@ -53,6 +61,8 @@ public class Library {
         }
     }
 
+
+    //Mengembalikan tampilan semua buku
     public void printAllBooks() {
         if (this.books.getItems().isEmpty()) {
             System.out.println("Tidak ada buku yang tersedia.");
@@ -64,6 +74,11 @@ public class Library {
         }
     }
 
+    /*
+    * Untuk mencari buku yang akan dihapus/diperbarui stoknya berdasarkan keyword,
+    * agar user bisa hanya menginputkan judul buku saja 
+    * Karena untuk updateStock dan removeBook parameternya adalah objek buku
+    */
     public Book getBookFromKeyword(String keyword) {
         try {
             return this.books.getItems().get(this.titles.searchItems(keyword).get(0));

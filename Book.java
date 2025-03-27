@@ -4,12 +4,15 @@ public class Book {
     private int year;
     private int stock;
 
+    // CONSTRUCTOR
     public Book(String title, String author, int year, int stock) {
         this.title = title;
         this.author = author;
         this.year = year;
         this.stock = stock;
     }
+
+    //SETTER & GETTER
     public void setTitle(String title) {
         this.title = title;
     }
@@ -23,6 +26,7 @@ public class Book {
     }
 
     public void setStock(int stock) throws AngkaStokException {
+        // Validasi stok minimal 0
         if (stock < 0) throw new AngkaStokException("Angka stok " + stock + " tidak valid.");
         this.stock = stock;
     }

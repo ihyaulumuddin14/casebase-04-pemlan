@@ -33,6 +33,7 @@ public class AppRun {
         }
     }
 
+    //Untuk menambah buku di perpustakaan
     private static void addBook() {
         System.out.print("Masukkan judul buku: ");
         String title = in.nextLine();
@@ -49,6 +50,7 @@ public class AppRun {
         System.out.println("Buku berhasil ditambahkan!");
     }
 
+    //Untuk menghapus buku berdasarkan judul buku
     private static void removeBook() {
         System.out.print("Masukkan judul buku yang ingin dihapus: ");
         String removeTitle = in.nextLine();
@@ -72,12 +74,14 @@ public class AppRun {
         }
     }
 
+    //Mencari buku berdasarkan kata kunci penulis buku/judul buku
     private static void searchBook() {
         System.out.print("Masukkan kata kunci pencarian (judul/penulis): ");
         String keyword = in.nextLine();
         library.searchBooks(keyword);
     }
 
+    //Memperbarui stok
     private static void updateStock() {
         System.out.print("Masukkan judul buku yang ingin diperbarui stoknya: ");
         String bookTitle = in.nextLine();
@@ -98,10 +102,12 @@ public class AppRun {
         }
     }
 
+    //Mencetak semua informasi buku-buku
     private static void printAllBooks() {
         library.printAllBooks();
     }
 
+    //Validasi pilihan menu agar hanya menginputkan angka yang ada di pilihan
     private static int inputValidation() {
         while (true) {
             try {
