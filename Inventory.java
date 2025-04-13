@@ -28,9 +28,11 @@ public class Inventory<T> {
     public List<Integer> searchItems(String keyword) throws ItemTidakDItemukanException {
         List<Integer> results = new ArrayList<>();
 
-        for (T item : this.items) {
+        for (int i = 0; i < this.items.size(); i++) {
+            T item = this.items.get(i);
             if (item.toString().equalsIgnoreCase(keyword)) {
-                results.add(this.items.indexOf(item));
+                results.add(i);
+                System.out.println(i);
             }
         }
 
